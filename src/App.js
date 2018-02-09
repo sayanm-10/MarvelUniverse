@@ -10,14 +10,14 @@ class App extends Component {
 
     this.state = {
       superHero: "",
-      orderByName: false
+      orderById: false
     };
   }
 
-  onSearch= (query, orderByName) => {
+  onSearch= (query, orderById) => {
     this.setState({
       superHero: query,
-      orderByName: orderByName
+      orderById: orderById
     });
   }
 
@@ -30,7 +30,7 @@ class App extends Component {
               <SearchForm onSearch={this.onSearch} />
             </div>
             <div className="col-6">
-              <SuperHeroList superHero={this.state.superHero} />
+              <SuperHeroList superHero={this.state.superHero} orderById={this.state.orderById} />
             </div>
           </div>
         </div>

@@ -6,12 +6,14 @@ class SearcForm extends Component {
 
         this.state = {
             searchQuery: "",
-            orderByName: false
+            orderById: false
         }
     }
 
-    toggleNameOrdering = e => {
-        //if(this)
+    toggleOrdering = e => {
+        this.setState({
+            orderById: e.target.checked
+        });
     }
 
     onSearchQueryChange = e => {
@@ -23,7 +25,7 @@ class SearcForm extends Component {
     onSubmit = e => {
         e.preventDefault();
         if (this.state.searchQuery) {
-            this.props.onSearch(this.state.searchQuery);
+            this.props.onSearch(this.state.searchQuery, this.state.orderById);
         }
     }
 
@@ -44,12 +46,13 @@ class SearcForm extends Component {
                         placeholder="Superhero..."
                     />
                     <small id="superheroHelp" className="form-text text-muted">
-                        Everyone has a favorite superhero; which do you want to search for?
+                        Everyone has a favorite superhero. Who do you want to search for?
                     </small>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="">
-                        <input type="checkbox" checked={this.state.orderByName} />
+                    <label htmlFor="orderById">
+                        <input type="checkbox" checked={this.state.orderById} onChange={this.toggleOrdering} />
+                        Order results by Id
                     </label>
                 </div>
                 <button type="submit" className="btn btn-primary">

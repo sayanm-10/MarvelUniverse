@@ -13,7 +13,6 @@ class SuperHeroList extends Component {
     async getSearchResults(query) {
         let url = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${query}&apikey=9b987acfe48aed7266e4ce7a6bf09365`;
         const response = await Axios.get(url);
-        console.log(response);
 
         return response.data.data.results;
     }
@@ -38,19 +37,34 @@ class SuperHeroList extends Component {
     };
 
     render() {
-        if(this.props.superHero) {
-            return (
-                <div>
-                    <h1>{this.state.listOfMatchingHeroes.length} results for {this.props.superHero}</h1>
-                    <ul>
-                        {this.state.listOfMatchingHeroes.map(hero => {
-                            return <li key={hero.id}>{hero.name}</li>
-                        })}
-                    </ul>
-                </div>
-            );
+        if(!this.props.superHero) {
+            return <h1>Search for someone</h1>;
         }
-        return <h1>Search for someone</h1>;
+
+        const heroes = [...this.state.listOfMatchingHeroes];
+
+        if (this.props.orderById) {
+            heroes.sort((x,y) => {
+                if (x.id < y.id) return 1;
+                if (x.id > y.id) return -1;
+                
+                return 0;
+            });
+        }
+
+        return (
+            <div>
+                <h1>
+                    {this.state.listOfMatchingHeroes.length === 0 ? 'Loading' : this.state.listOfMatchingHeroes.length } 
+                    {" "}results for {this.props.superHero}
+                </h1>
+                <ul>
+                    {heroes.map(hero => {
+                        return <li key={hero.id}>{hero.name}</li>
+                    })}
+                </ul>
+            </div>
+        );
     }
 }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 //import './App.css';
 import SearchForm from './SearchForm'
-import SuperHeroList from './SuperHeroList'
+import SuperHeroListContainer from './SuperHeroListContainer'
 
 class App extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class App extends Component {
               <SearchForm onSearch={this.onSearch} />
             </div>
             <div className="col-6">
-              <SuperHeroList superHero={this.state.superHero} orderById={this.state.orderById} />
+              <SuperHeroListContainer superHero={this.state.superHero} orderById={this.state.orderById} />
             </div>
           </div>
         </div>

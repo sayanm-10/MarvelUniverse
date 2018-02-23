@@ -30,7 +30,7 @@ class App extends Component {
               <SearchForm onSearch={this.onSearch} />
             </div>
             <div className="col-6">
-              <SuperHeroListContainer superHero={this.state.superHero} orderById={this.state.orderById} />
+              <SuperHeroListContainer  superHero={this.state.superHero} orderById={this.state.orderById} />
             </div>
           </div>
         </div>

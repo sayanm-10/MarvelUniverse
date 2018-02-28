@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Route, Switch, Link } from "react-router-dom";
 
-import SuperHeroListContainer from './SuperHeroListContainer';
 import HomeSearchPage from "./HomeSearchPage";
+import SuperHeroListContainer from './SuperHeroListContainer';
+import SuperHeroEntryContainer from './SuperHeroEntryContainer';
 import "./App.css";
 
 class App extends Component {
@@ -42,6 +43,7 @@ class App extends Component {
           <Switch>
             <Route path="/" exact={true} component={HomeSearchPage} />
             <Route path="/search/:superHeroName" component={SuperHeroListContainer} />
+            <Route path="/superhero/:id" component={SuperHeroEntryContainer} />            
           </Switch>
         </div>
       </div>

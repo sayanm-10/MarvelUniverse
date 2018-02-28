@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import SuperHeroListEntry from './SuperHeroListEntry';
+//import SuperHeroListEntry from './SuperHeroListEntry';
+import { Link } from 'react-router-dom';
 
 class SuperHeroList extends Component {
     render() {
@@ -11,7 +12,13 @@ class SuperHeroList extends Component {
                 </h1>
                 <ul>
                     {this.props.heroList.map(hero => {
-                        return <SuperHeroListEntry hero={hero} key={hero.id} />
+                        return (
+                            <li key={hero.id}>
+                                <Link to={`/superhero/${hero.id}`}>
+                                    {hero.name}
+                                </Link>
+                            </li>
+                        )
                     })}
                 </ul>
             </div>

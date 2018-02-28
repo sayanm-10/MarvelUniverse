@@ -20,8 +20,11 @@ class SuperHeroListContainer extends Component {
 
     // is called only once when the component is added to the DOM
     componentDidMount = async props => {
-        if (this.props.superHero) {
-            const matches = await this.getSearchResults(this.props.superHero);
+        const { match } = this.props;
+        const superHero = match.params.superHeroName;
+
+        if (superHero) {
+            const matches = await this.getSearchResults(superHero);
             this.setState({
                 listOfMatchingHeroes: matches
             });
@@ -29,8 +32,14 @@ class SuperHeroListContainer extends Component {
     };
 
     componentWillReceiveProps = async newProps => {
-        if (newProps.superHero && newProps.superHero !== this.props.superHero) {
-            const matches = await this.getSearchResults(newProps.superHero);
+        const currentMatch = this.props.match;
+        const currentSuperhero = currentMatch.params.superHeroName;
+    
+        const newMatch = newProps.match;
+        const newSuperhero = newMatch.params.superHeroName;        
+
+        if (newSuperhero && newSuperhero !== currentSuperhero) {
+            const matches = await this.getSearchResults(newSuperhero);
             this.setState({
                 listOfMatchingHeroes: matches
             });
@@ -38,7 +47,7 @@ class SuperHeroListContainer extends Component {
     };
 
     render() {
-        if(!this.props.superHero) {
+        if(!this.props.match.params.superHeroName) {
             return <h1>Search for someone</h1>;
         }
 
@@ -54,7 +63,7 @@ class SuperHeroListContainer extends Component {
         }
 
         return (
-            <SuperHeroList heroList={heroes} query={this.props.superHero} />
+            <SuperHeroList heroList={heroes} query={this.props.match.params.superHeroName} />
         );
     }
 }

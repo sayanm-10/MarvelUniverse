@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Route, Switch, Link } from "react-router-dom";
 
+import SuperHeroListContainer from './SuperHeroListContainer';
 import HomeSearchPage from "./HomeSearchPage";
-
 import "./App.css";
 
 class App extends Component {
@@ -41,6 +41,7 @@ class App extends Component {
         <div className="container">
           <Switch>
             <Route path="/" exact={true} component={HomeSearchPage} />
+            <Route path="/search/:superHeroName" component={SuperHeroListContainer} />
           </Switch>
         </div>
       </div>
